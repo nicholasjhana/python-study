@@ -1,0 +1,23 @@
+#!/usr/local/bin/python3
+
+import time
+
+def as_strftime(time_val):
+    """
+    Function that converts a struct_time object to a readable string with strfttime.
+    """
+    return time.strftime('%H:%M:%S %Y-%m-%d', time_val)
+
+input("Press 'enter' to start the stopwatch")
+
+#time.localtime() returns a struct_time obejct.
+start = time.localtime()
+print(f'Timer started at {as_strftime(start)}')
+
+input("Press 'enter' to stop the stopwatch")
+stop = time.localtime()
+print(f'Timer stopped at {as_strftime(stop)}')
+
+#time package has no method to difference times. So use the time.mktime to convert the struct_time object into a unix time numberic value first.
+diff = time.mktime(stop)-time.mktime(start)
+print(f'Running time: {diff} seconds')
